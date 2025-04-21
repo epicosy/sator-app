@@ -1,6 +1,8 @@
+from typing import List
 from sator_app.bootstrap.base import BaseBuilder
 
 from sator_core.ports.driven.classifiers.diff import DiffClassifierPort
+from sator_core.ports.driven.repositories.product import ProductRepositoryPort
 from sator_core.ports.driven.analyzers.patch import PatchAttributesAnalyzerPort
 
 
@@ -11,9 +13,11 @@ from sator_core.use_cases.analysis.attributes import (
 
 class AnalysisBuilder(BaseBuilder):
     def __init__(
-            self, diff_classifier: DiffClassifierPort, patch_attrs_analyzer: PatchAttributesAnalyzerPort, **kwargs
+            self, prod_repos: List[ProductRepositoryPort], diff_classifier: DiffClassifierPort,
+            patch_attrs_analyzer: PatchAttributesAnalyzerPort, **kwargs
     ):
         super().__init__(**kwargs)
+        self.product_repositories = prod_repos
         self.patch_attributes_analyzer = patch_attrs_analyzer
         self.diff_classifier = diff_classifier
 
@@ -31,5 +35,6 @@ class AnalysisBuilder(BaseBuilder):
 
     def create_vulnerability_attributes_analysis(self) -> VulnerabilityAttributesAnalysis:
         return VulnerabilityAttributesAnalysis(
+            prod_repos=self.product_repositories,
             storage_port=self.storage_port
         )
