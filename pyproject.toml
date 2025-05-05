@@ -8,7 +8,7 @@ homepage = "https://github.com/epicosy/sator-app"
 
 [project]
 name="sator-app"
-version = "0.0.4"
+version = "0.0.5"
 description = "Package with the application layer for Sator, an open-source vulnerability analysis application."
 readme = "README.md"
 authors = [
