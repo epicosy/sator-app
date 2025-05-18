@@ -4,7 +4,6 @@ from pydantic import AnyUrl
 from unittest.mock import MagicMock
 
 from sator_core.models.product import Product, ProductAttributes, ProductLocator, ProductReferences
-from sator_core.models.product.locator import ProductOwnership
 from sator_app.services.processing.product import ProductProcessingService
 
 
@@ -14,24 +13,22 @@ test_product = Product(
 )
 
 test_product_attributes = ProductAttributes(
-    product=test_product,
+    name="Document Server",
+    product_id=test_product.id,
     keywords=["online office suite", "collaborative editing"],
     platforms=["Mac", "Windows", "Linux"]
 )
 
 test_product_references = ProductReferences(
-    website=[AnyUrl("https://onlyoffice.com")],
-    product=[AnyUrl("https://github.com/ONLYOFFICE/DocumentServer")]
-)
-
-prod_ownership = ProductOwnership(
-    product=test_product,
-    owner_id=1426033
+    product_id=test_product.id,
+    homepage=[AnyUrl("https://onlyoffice.com")],
+    repositories=[AnyUrl("https://github.com/ONLYOFFICE/DocumentServer")]
 )
 
 test_product_locator = ProductLocator(
-    product_ownership=prod_ownership,
-    repository_id=21525321
+    product_id=test_product.id,
+    platform="github",
+    repository_path="ONLYOFFICE/DocumentServer"
 )
 
 

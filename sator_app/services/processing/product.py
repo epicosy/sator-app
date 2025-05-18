@@ -26,9 +26,9 @@ class ProductProcessingService:
         print(attributes)
 
         if attributes:
-            annotation = self.product_annotation.annotate_product_attributes(product_id=attributes.product.id)
+            annotation = self.product_annotation.annotate_product_attributes(product_id=attributes.product_id)
             print(annotation)
-            locator = self.product_analysis.analyze_product_attributes(product_id=attributes.product.id)
+            locator = self.product_analysis.analyze_product_attributes(product_id=attributes.product_id)
             print(locator)
             return locator
 
