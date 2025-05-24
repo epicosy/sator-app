@@ -24,7 +24,7 @@ classifiers = [
     "Intended Audience :: Developers"
 ]
 dependencies = [
-    "sator-core>=0.0.11"
+    "sator-core>=0.0.12"
 ]
 
 [project.optional-dependencies]

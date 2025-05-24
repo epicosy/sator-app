@@ -26,6 +26,7 @@ class TestPatchProcessingService(unittest.TestCase):
         """Test full successful workflow with attributes found"""
         # Setup test data
         test_vulnerability_id = "CVE-2023-12345"
+        test_product_id = "vendor/product"
         test_references = MagicMock()
         test_attributes = MagicMock()
         test_annotation = MagicMock()
@@ -38,11 +39,11 @@ class TestPatchProcessingService(unittest.TestCase):
         self.mock_analysis.analyze_patch_attributes.return_value = test_locator
 
         # Execute
-        result = self.service.process_patch(test_vulnerability_id)
+        result = self.service.process_patch(test_vulnerability_id, test_product_id)
 
         # Verify calls
         self.mock_references.search_patch_references.assert_called_once_with(
-            vulnerability_id=test_vulnerability_id
+            vulnerability_id=test_vulnerability_id, product_id=test_product_id
         )
         self.mock_extraction.extract_patch_attributes.assert_called_once_with(
             vulnerability_id=test_vulnerability_id
@@ -61,6 +62,7 @@ class TestPatchProcessingService(unittest.TestCase):
         """Test early exit when no attributes found"""
         # Setup test data
         test_vulnerability_id = "CVE-2023-12345"
+        test_product_id = "vendor/product"
         test_references = MagicMock()
 
         # Configure mocks
@@ -68,11 +70,11 @@ class TestPatchProcessingService(unittest.TestCase):
         self.mock_extraction.extract_patch_attributes.return_value = None
 
         # Execute
-        result = self.service.process_patch(test_vulnerability_id)
+        result = self.service.process_patch(test_vulnerability_id, test_product_id)
 
         # Verify calls
         self.mock_references.search_patch_references.assert_called_once_with(
-            vulnerability_id=test_vulnerability_id
+            vulnerability_id=test_vulnerability_id, product_id=test_product_id
         )
         self.mock_extraction.extract_patch_attributes.assert_called_once_with(
             vulnerability_id=test_vulnerability_id

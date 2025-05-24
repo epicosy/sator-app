@@ -49,7 +49,6 @@ class ResolutionBuilder(BaseBuilder):
     def create_patch_references_resolution(self) -> PatchReferencesResolution:
         return PatchReferencesResolution(
             oss_repositories=self.oss_repositories,  # Empty list as default
-            oss_gateway=self.oss_gateway,
+            oss_gateways=self.oss_gateways,  # Already a list from BaseBuilder
             storage_port=self.storage_port
         )
-

@@ -36,7 +36,7 @@ class ExtractionBuilder(BaseBuilder):
 
     def create_patch_attributes_extraction(self) -> PatchAttributesExtraction:
         return PatchAttributesExtraction(
-            oss_gateway=self.oss_gateway,
+            oss_gateways=self.oss_gateways,
             attributes_extractor=self.patch_attributes_extractor,
             storage_port=self.storage_port
         )

@@ -14,14 +14,14 @@ def test_analysis_builder_creates_patch_attributes_analysis():
     mock_patch_analyzer = MagicMock()
     mock_product_repos = [MagicMock()]
     mock_diff_classifier = MagicMock()
-    mock_oss_gateway = MagicMock()
+    mock_oss_gateways = [MagicMock()]
 
     builder = AnalysisBuilder(
         prod_repos=mock_product_repos,
         diff_classifier=mock_diff_classifier,
         patch_attrs_analyzer=mock_patch_analyzer,
         storage_port=mock_storage,  # this and oss_gateway likely set in BaseBuilder
-        oss_gateway=mock_oss_gateway
+        oss_gateways=mock_oss_gateways
     )
 
     # Act
@@ -34,7 +34,7 @@ def test_analysis_builder_creates_patch_attributes_analysis():
     assert patch_analysis.storage_port is mock_storage
     assert patch_analysis.patch_analyzer is mock_patch_analyzer
     assert isinstance(product_analysis, ProductAttributesAnalysis)
-    assert product_analysis.oss_gateway is mock_oss_gateway
+    assert product_analysis.oss_gateways == mock_oss_gateways
     assert product_analysis.storage_port is mock_storage
     assert isinstance(vulnerability_analysis, VulnerabilityAttributesAnalysis)
     assert vulnerability_analysis.product_repositories == mock_product_repos

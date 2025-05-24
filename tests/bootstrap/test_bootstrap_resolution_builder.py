@@ -31,7 +31,7 @@ class TestResolutionBuilder(unittest.TestCase):
             prod_repos=self.mock_prod_repos,
             oss_repos=self.mock_oss_repos,
             storage_port=self.mock_storage,
-            oss_gateway=self.mock_oss_gateway
+            oss_gateways=[self.mock_oss_gateway]
         )
 
     def test_create_vulnerability_metadata_resolution(self):
@@ -72,7 +72,7 @@ class TestResolutionBuilder(unittest.TestCase):
 
         self.assertIsInstance(resolution, PatchReferencesResolution)
         self.assertEqual(resolution.oss_repositories, self.mock_oss_repos)  # Check mock OSS repositories are passed
-        self.assertEqual(resolution.oss_gateway, self.mock_oss_gateway)
+        self.assertEqual(resolution.oss_gateways, [self.mock_oss_gateway])  # Check mock OSS gateway is in the list
         self.assertEqual(resolution.storage_port, self.mock_storage)
 
 

@@ -32,7 +32,7 @@ class TestExtractionBuilder(unittest.TestCase):
             product_attrs_extractor=self.mock_product_extractor,
             vuln_attrs_extractor=self.mock_vuln_extractor,
             storage_port=self.mock_storage,
-            oss_gateway=self.mock_oss_gateway
+            oss_gateways=[self.mock_oss_gateway]
         )
 
     def test_create_product_attributes_extraction(self):
@@ -56,7 +56,7 @@ class TestExtractionBuilder(unittest.TestCase):
         extraction = self.builder.create_patch_attributes_extraction()
 
         self.assertIsInstance(extraction, PatchAttributesExtraction)
-        self.assertEqual(extraction.oss_gateway, self.mock_oss_gateway)
+        self.assertEqual(extraction.oss_gateways, [self.mock_oss_gateway])
         self.assertEqual(extraction.attributes_extractor, self.mock_patch_extractor)
         self.assertEqual(extraction.storage_port, self.mock_storage)
 

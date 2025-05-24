@@ -29,7 +29,7 @@ class AnalysisBuilder(BaseBuilder):
 
     def create_product_attributes_analysis(self) -> ProductAttributesAnalysis:
         return ProductAttributesAnalysis(
-            oss_gateway=self.oss_gateway,
+            oss_gateways=self.oss_gateways,
             storage_port=self.storage_port
         )
 

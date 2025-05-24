@@ -19,8 +19,10 @@ class PatchProcessingService:
         self.patch_analysis = patch_analysis
 
     # TODO: should return something that assembles all the information
-    def process_patch(self, vulnerability_id: str) -> PatchLocator | None:
-        references = self.patch_references.search_patch_references(vulnerability_id=vulnerability_id)
+    def process_patch(self, vulnerability_id: str, product_id: str) -> PatchLocator | None:
+        references = self.patch_references.search_patch_references(
+            vulnerability_id=vulnerability_id, product_id=product_id
+        )
         print(references)
         attributes = self.patch_extraction.extract_patch_attributes(vulnerability_id=vulnerability_id)
         print(attributes)
