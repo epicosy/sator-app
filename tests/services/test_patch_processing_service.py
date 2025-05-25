@@ -46,7 +46,7 @@ class TestPatchProcessingService(unittest.TestCase):
             vulnerability_id=test_vulnerability_id, product_id=test_product_id
         )
         self.mock_extraction.extract_patch_attributes.assert_called_once_with(
-            vulnerability_id=test_vulnerability_id
+            vulnerability_id=test_vulnerability_id, product_id=test_product_id
         )
         self.mock_annotation.annotate_patch_attributes.assert_called_once_with(
             vulnerability_id=test_vulnerability_id
@@ -77,7 +77,7 @@ class TestPatchProcessingService(unittest.TestCase):
             vulnerability_id=test_vulnerability_id, product_id=test_product_id
         )
         self.mock_extraction.extract_patch_attributes.assert_called_once_with(
-            vulnerability_id=test_vulnerability_id
+            vulnerability_id=test_vulnerability_id, product_id=test_product_id
         )
         self.mock_annotation.annotate_patch_attributes.assert_not_called()
         self.mock_analysis.analyze_patch_attributes.assert_not_called()

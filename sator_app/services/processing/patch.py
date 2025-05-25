@@ -24,7 +24,10 @@ class PatchProcessingService:
             vulnerability_id=vulnerability_id, product_id=product_id
         )
         print(references)
-        attributes = self.patch_extraction.extract_patch_attributes(vulnerability_id=vulnerability_id)
+
+        attributes = self.patch_extraction.extract_patch_attributes(
+            vulnerability_id=vulnerability_id, product_id=product_id
+        )
         print(attributes)
 
         if attributes:
